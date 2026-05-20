@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Reveal-on-scroll animation */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+[data-animate][data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Print niceties */
+@media print {
+  [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  a {
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  .page-break-inside-avoid {
+    break-inside: avoid;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
